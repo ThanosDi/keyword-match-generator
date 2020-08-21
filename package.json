@@ -1,14 +1,19 @@
 {
-  "name": "keyword-generator",
+  "name": "keyword-match-generator",
+  "description": "A simple react tool to generate keywords.",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "material-table": "1.68.0",
+    "ramda": "^0.27.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "use-persisted-state": "^0.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

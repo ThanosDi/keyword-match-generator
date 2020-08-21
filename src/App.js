@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import createPersistedState from 'use-persisted-state';
+import { isEmpty, pipe, not } from 'ramda';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
+import TextField from './components/textfield';
+import KeyWordsGenerated from './components/keywords-generated';
+import ToggleGenerated from './components/toggle-view.jsx';
+
+const useKeywordState = createPersistedState('keyword');
+const useViewTableState = createPersistedState('viewTable');
+
+const hasKeywords = pipe(isEmpty, not);
 
 function App() {
+  const [keywords, setKeywords] = useKeywordState([]);
+  const [viewTable, setViewTable] = useViewTableState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid container direction='column' justify='center'>
+      <Typography variant='h2' component='h2' gutterBottom align='center'>
+        Keyword Match Generator
+      </Typography>
+      <ToggleGenerated viewTable={viewTable} setViewTable={setViewTable} />
+
+      <TextField setKeywords={setKeywords} />
+      {hasKeywords(keywords) && (
+        <KeyWordsGenerated data={keywords} viewTable={viewTable} />
+      )}
+    </Grid>
   );
 }
 
